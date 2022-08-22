@@ -119,7 +119,7 @@ export default function ComparisonBetweenTwo() {
                 <button className='btn btn-success'> submit </button>
             </form>
 
-            <div>
+            <div className='text-center'>
                 <Plot
                     layout={layout}
                     data={airData}

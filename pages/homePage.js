@@ -3,7 +3,8 @@ import axios from 'axios';
 // import Plot from 'react-plotly.js';
 import ComparisoBetweenMultipleData from '../Components/Home/ComparisoBetweenMultipleData';
 import ComparisonBetweenTwo from '../Components/Home/ComparisonBetweenTwo';
-import DivisionWiseAqi from '../Components/Home/DivisionWiseAqi';
+import DivisionWiseAvgAqi from '../Components/Home/DivisionWiseAvgAqi';
+import DivisonAqiLineCharts from '../Components/Home/DivisonAqiLineCharts';
 import LocationBasedAir from '../Components/Home/LocationBasedAir';
 import Navbar from '../Components/Home/Navbar';
 import YearlyAvgAqiBarCharts from '../Components/Home/YearlyAvgAqiBarCharts';
@@ -43,8 +44,10 @@ export default function HomePage() {
             <LocationBasedAir></LocationBasedAir>
             <ComparisoBetweenMultipleData></ComparisoBetweenMultipleData>
             <ComparisonBetweenTwo></ComparisonBetweenTwo>
+            <DivisionWiseAvgAqi></DivisionWiseAvgAqi>
+            <DivisonAqiLineCharts></DivisonAqiLineCharts>
             <YearlyAvgAqiBarCharts></YearlyAvgAqiBarCharts>
-            <DivisionWiseAqi></DivisionWiseAqi>
+
         </>
     )
 }
