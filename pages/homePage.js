@@ -5,8 +5,11 @@ import ComparisoBetweenMultipleData from '../Components/Home/ComparisoBetweenMul
 import ComparisonBetweenTwo from '../Components/Home/ComparisonBetweenTwo';
 import DivisionWiseAvgAqi from '../Components/Home/DivisionWiseAvgAqi';
 import DivisonAqiLineCharts from '../Components/Home/DivisonAqiLineCharts';
+import Graph10 from '../Components/Home/Graph10';
+import Graph7 from '../Components/Home/graph7';
 import LocationBasedAir from '../Components/Home/LocationBasedAir';
 import Navbar from '../Components/Home/Navbar';
+import ReqSeven from '../Components/Home/ReqSeven';
 import YearlyAvgAqiBarCharts from '../Components/Home/YearlyAvgAqiBarCharts';
 export default function HomePage() {
 
@@ -46,7 +49,9 @@ export default function HomePage() {
             <ComparisonBetweenTwo></ComparisonBetweenTwo>
             <DivisionWiseAvgAqi></DivisionWiseAvgAqi>
             <DivisonAqiLineCharts></DivisonAqiLineCharts>
+            <ReqSeven />
             <YearlyAvgAqiBarCharts></YearlyAvgAqiBarCharts>
+            <Graph10></Graph10>
 
         </>
     )

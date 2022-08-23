@@ -12,18 +12,12 @@ export default function DivisionWiseAvgAqi() {
             const response = await axios.get(`http://localhost:3030/airData/get/aqi/all/division/data`)
             const result = response.data;
             if (result.status === 202) {
-                // setData(result.airData);
-                console.table(result.airData);
                 structData(result.airData);
-
-
             }
             else {
                 console.log("an error occurred");
 
             }
-
-
         }
         catch (error) {
             console.log(error);
@@ -33,14 +27,11 @@ export default function DivisionWiseAvgAqi() {
         getData();
     }, [])
 
-    //logs
-    // console.log("data is ", data); 
+
 
 
     const structData = (data) => {
         let plotData = [];
-
-        // let division = []
         data.map((data) => {
             let struct = {
                 type: "scattermapbox",
@@ -51,19 +42,16 @@ export default function DivisionWiseAvgAqi() {
             }
             struct.lon.push(...data.lon);
             struct.lat.push(...data.lat);
-            // division.division = data.division;
-            // struct.pmValue = data.pmValue;
             struct.marker.color = data.color;
             plotData.push(struct);
         })
 
 
         setChart(plotData);
-        // console.log("chart", chart);
+
     }
 
-    // setChart(plotData);
-    console.log(chart)
+
     let layout = {
         mapbox: {
             style: "stamen-terrain",
@@ -78,7 +66,7 @@ export default function DivisionWiseAvgAqi() {
 
     return (
         <div className='container mt-5 '>
-            <h4 className='text-center'>Division Wise Average Air Quality Index</h4>
+            <h4 className='text-center text-primary'>Division Wise Average Air Quality Index</h4>
             <div className='text-center'>
                 <Plot
                     data=
@@ -86,8 +74,6 @@ export default function DivisionWiseAvgAqi() {
                         chart
                     }
                     layout={layout}
-
-
                 />
             </div>
         </div>
