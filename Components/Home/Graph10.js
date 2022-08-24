@@ -61,7 +61,8 @@ export default function Graph10() {
     }, [])
     return (
         <div className='container mt-5 mb-5'>
-            <form onSubmit={submitHandler} className='container d-flex justify-content-between' >
+            <h4 className='text-primary text--decoration-underline text-center mb-4'>Yearly average AQI data visualization using Bar Charts</h4>
+            <form onSubmit={submitHandler} className='container d-flex justify-content-between mt-3' >
                 <select name="startYear" onChange={onChangeHandler}>
                     <option value="">select start year</option>
                     {years.map((year) =>

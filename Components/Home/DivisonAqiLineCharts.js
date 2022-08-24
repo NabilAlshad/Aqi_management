@@ -12,7 +12,7 @@ export default function DivisonAqiLineCharts() {
     const changleHandler = (e) => {
         const { name, value } = e.target;
         setChangeValue({ ...selectValue, [name]: value });
-        console.log(selectValue);
+
 
 
     }
@@ -21,11 +21,9 @@ export default function DivisonAqiLineCharts() {
     const postYearlyData = async (e) => {
         try {
             e.preventDefault();
-            // const {name,value}=e.target;
-            // console.log(selectValue);
+
             const response = await axios.post(`http://localhost:3030/airData/get/aqi/all`, selectValue, { withCredentials: true })
-            // console.log(response.data);
-            // const result = response.data;
+
             if (response.data.status === 202) {
                 graphData(response.data.airData);
                 // setChart(data)
@@ -44,7 +42,6 @@ export default function DivisonAqiLineCharts() {
     }
     const graphData = (data) => {
 
-        // console.log(data);
         let plotData = [];
         data.map((i) => {
             let arr = [];
@@ -55,7 +52,7 @@ export default function DivisonAqiLineCharts() {
                 name: ""
             }
             i.map((j) => {
-                // console.log(j);
+
                 struct.x.push(j.year);
                 struct.y.push(j.avgAQI);
                 struct.name = j.division;
@@ -63,30 +60,29 @@ export default function DivisonAqiLineCharts() {
             arr.push(struct);
 
             plotData.push(...arr)
-            // setChart(plotData);
-            // console.log(plotData);
+
             setChart(plotData);
             return plotData
             // setChart(arr)
         })
 
-        // console.log("plotData", plotData);
+
 
 
     }
-    console.log(chart);
+
     //get all years
     const getYear = async () => {
         try {
             const response = await axios.get(`http://localhost:3030/airData/get/available/published/year/daily`);
-            // console.log(response.data.years)
+
             setYears(response.data.years);
         } catch (error) {
             console.log(error);
         }
 
     }
-    // console.log(chart)
+
     const layout = {
         title: "Division-Wise Time-based Air Quality Index (AQI) data visualization using line charts,"
     }
@@ -96,7 +92,8 @@ export default function DivisonAqiLineCharts() {
     }, [])
     return (
         <div className='container mt-5 mb-5'>
-            <form onSubmit={postYearlyData} className='col-md-12 d-flex justify-content-around'>
+            <h4 className='text-center text-decoration-line text-primary'>Division wise time basae air quality index data visualization using line charts</h4>
+            <form onSubmit={postYearlyData} className='col-md-12 d-flex justify-content-around mt-4'>
                 {/* yearly monthly select  */}
                 <select className='form-select' onChange={changleHandler} name="queryBy">
                     <option value="">select a value</option>
@@ -122,7 +119,7 @@ export default function DivisonAqiLineCharts() {
 
                 <input type="submit" className='btn btn-success' />
             </form>
-            <div>
+            <div className='text-center '>
                 <Plot
                     data={chart}
                     layout={layout}

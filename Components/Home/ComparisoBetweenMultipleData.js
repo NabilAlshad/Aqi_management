@@ -68,8 +68,8 @@ export default function ComparisoBetweenMultipleData() {
 
     return (
         <div className='container m-5'>
-            <h3 className='text-dark text-decoration-underline text-center mb-5'>A comparison between multiple data sources  using line charts,
-                scatterplots, and boxplots,</h3>
+            <h4 className='text-primary text-decoration-underline text-center mb-5'>A comparison between multiple data sources  using line charts,
+                scatterplots, and boxplots,</h4>
             <div className='col-md-3'>
                 <select
                     className="form-select"

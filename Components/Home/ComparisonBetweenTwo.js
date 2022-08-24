@@ -79,8 +79,8 @@ export default function ComparisonBetweenTwo() {
 
     return (
         <div className='container mt-5 text mb-5'>
-            <h6></h6>
-            <form className='form' onSubmit={handleSubmit}>
+            <h4 className='text-center text-decoration-underline text-primary mb-4'>Comparison between two agenciens data</h4>
+            <form className='form text-center mt-4' onSubmit={handleSubmit}>
                 {/* start  year  */}
                 <select name="startYear" onChange={(e) => setValues({ ...values, startYear: e.target.value })} className=''>
                     <option value="">select start year</option>

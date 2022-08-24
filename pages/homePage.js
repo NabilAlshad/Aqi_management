@@ -7,6 +7,8 @@ import DivisionWiseAvgAqi from '../Components/Home/DivisionWiseAvgAqi';
 import DivisonAqiLineCharts from '../Components/Home/DivisonAqiLineCharts';
 import Graph10 from '../Components/Home/Graph10';
 import Graph7 from '../Components/Home/graph7';
+import Graph8A from '../Components/Home/Graph8A';
+import Graph8b from '../Components/Home/Graph8b';
 import LocationBasedAir from '../Components/Home/LocationBasedAir';
 import Navbar from '../Components/Home/Navbar';
 import ReqSeven from '../Components/Home/ReqSeven';
@@ -50,7 +52,9 @@ export default function HomePage() {
             <DivisionWiseAvgAqi></DivisionWiseAvgAqi>
             <DivisonAqiLineCharts></DivisonAqiLineCharts>
             <ReqSeven />
-            <YearlyAvgAqiBarCharts></YearlyAvgAqiBarCharts>
+            <Graph8A></Graph8A>
+            <Graph8b></Graph8b>
+            {/* <YearlyAvgAqiBarCharts></YearlyAvgAqiBarCharts> */}
             <Graph10></Graph10>
 
         </>

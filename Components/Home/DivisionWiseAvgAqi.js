@@ -66,7 +66,7 @@ export default function DivisionWiseAvgAqi() {
 
     return (
         <div className='container mt-5 '>
-            <h4 className='text-center text-primary'>Division Wise Average Air Quality Index</h4>
+            <h4 className='text-center text-decoration-underline text-primary'>Division Wise Average Air Quality Index</h4>
             <div className='text-center'>
                 <Plot
                     data=
