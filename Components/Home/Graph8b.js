@@ -114,7 +114,7 @@ export default function Graph8b() {
     }, [])
     return (
         <div className='container mt-5 text-center'>
-            <h4 className='text-primary mb-4 text--decoration-underline'>Month Wise AVG AQI of PM2.5 value of a particular Station(monthly) </h4>
+            <h4 className='text-primary mb-4 text-decoration-underline'>Month Wise AVG AQI of PM2.5 value of a particular Station(monthly) </h4>
             <select name="agentId" id="" onChange={postToGetStation}>
                 <option value="">select agents</option>
                 {

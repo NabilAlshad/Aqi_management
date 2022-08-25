@@ -6,7 +6,6 @@ import ComparisonBetweenTwo from '../Components/Home/ComparisonBetweenTwo';
 import DivisionWiseAvgAqi from '../Components/Home/DivisionWiseAvgAqi';
 import DivisonAqiLineCharts from '../Components/Home/DivisonAqiLineCharts';
 import Graph10 from '../Components/Home/Graph10';
-import Graph7 from '../Components/Home/graph7';
 import Graph8A from '../Components/Home/Graph8A';
 import Graph8b from '../Components/Home/Graph8b';
 import LocationBasedAir from '../Components/Home/LocationBasedAir';
@@ -15,33 +14,6 @@ import ReqSeven from '../Components/Home/ReqSeven';
 import YearlyAvgAqiBarCharts from '../Components/Home/YearlyAvgAqiBarCharts';
 export default function HomePage() {
 
-    // const [chart, setChart] = useState([]);
-    // const getData = async () => {
-    //     const result = await axios.get(`https://data.cityofnewyork.us/resource/rc75-m7u3.json`)
-
-    //     const data = result.data;
-
-    //     let plotData = [];
-    //     let x = [];
-    //     let y = [];
-    //     data.map((data) => {
-    //         x.push(data.date_of_interest);
-    //         y.push(data.case_count);
-
-    //     })
-    //     plotData["x"] = x;
-    //     plotData["y"] = y;
-    //     // console.log(plotData);
-    //     setChart(plotData);
-
-    // }
-
-    // useEffect(() => {
-    //     getData();
-
-    // }, [])
-
-    // // console.log(`x is ${chart.x} y is ${chart.y}`)
     return (
 
         <>

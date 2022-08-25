@@ -2,16 +2,21 @@ import React, { useState } from 'react'
 import Navbar from '../Home/Navbar'
 import Styles from '../../styles/signup.module.css';
 import Link from 'next/dist/client/link';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from './LoginSlice';
 export default function Login() {
+    const disPatch = useDispatch();
+    const { message, agency, status } = useSelector((state) => state.login);
+    console.log("message ,agency,status", message, agency, status);
+
 
     const loginInfo = {
-        email: "",
+        emailOrAgentId: "",
         password: "",
     }
     const [loginData, setLoginData] = useState(loginInfo);
     const [error, setError] = useState({})
-    const [message, setMessage] = useState("")
+    // const [message, setMessage] = useState("")
     const handleChange = (e) => {
         const { name, value } = e.target;
         setLoginData({ ...loginData, [name]: value });
@@ -19,21 +24,15 @@ export default function Login() {
     const postLogin = async (e) => {
         try {
             e.preventDefault();
-            console.log(loginData);
             setError(validate(loginData));
-            const loginPost = await axios.post(`http://localhost:3030/agency/login`, loginData, { withCredentials: true });
-            const result = loginPost.data;
-            console.log(result);
-            if (result.status === 202) {
-                setMessage("succsfully login")
-
-            }
-            else {
-                setMessage("login failed")
-            }
+            disPatch(login(loginData));
+            setLoginData({
+                emailOrAgentId: "",
+                password: "",
+            })
         }
         catch (error) {
-
+            console.log(error);
         }
     }
 
@@ -41,8 +40,8 @@ export default function Login() {
         const error = {
 
         }
-        if (!values.email) {
-            error.email = "email is required";
+        if (!values.emailOrAgentId) {
+            emailOrAgentId.email = "email is required";
         }
         if (!values.password) {
             error.password = "password is required";
@@ -54,10 +53,11 @@ export default function Login() {
             <Navbar></Navbar>
             <form id={Styles.form} className="col-md-6" onSubmit={postLogin}>
                 <h1 className='text-success text-decoration-underline text-center'>Login</h1>
+                <p className='text-success'>{message}</p>
                 <div className="mb-3">
                     <input
                         type="email"
-                        name="email"
+                        name="emailOrAgentId"
                         value={loginData.email}
                         onChange={handleChange}
                         className="form-control" placeholder='enter your email' id="exampleInputEmail1" aria-describedby="emailHelp"></input>
@@ -80,7 +80,7 @@ export default function Login() {
                 <p className='text-center mt-4'>Don't have any account? <Link href="/signUp">Sign Up</Link></p>
             </form>
 
-            <p>{message && message}</p>
+
 
         </>
     )

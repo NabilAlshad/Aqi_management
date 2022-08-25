@@ -28,6 +28,7 @@ export default function LocationBasedAir() {
         const allDivisions = result.data.session;
 
         // //set all divisions 
+        console.log("division", result)
         setDivision(allDivisions);
 
 

@@ -65,10 +65,6 @@ export default function DivisonAqiLineCharts() {
             return plotData
             // setChart(arr)
         })
-
-
-
-
     }
 
     //get all years

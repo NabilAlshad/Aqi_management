@@ -2,9 +2,13 @@ import React, { useState } from 'react'
 import Navbar from '../Home/Navbar'
 import Styles from '../../styles/signup.module.css';
 import Link from 'next/dist/client/link';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from './Signupslice';
 
 export default function Signup() {
+    const disPatch = useDispatch();
+    const status = useSelector((state) => state.signUp.status);
+    // console.log(users);
 
     const formValues = {
         name: "",
@@ -14,7 +18,9 @@ export default function Signup() {
         area: '',
         division: "",
         district: "",
+        country: "",
         motive: "",
+        userType: "",
 
     }
 
@@ -36,24 +42,11 @@ export default function Signup() {
             e.preventDefault();
             console.log(inputValues);
             setError(validate(inputValues));
-            const postData = await axios.post(`http://localhost:3030/agency/registration`, inputValues, { witCredentials: true })
-            const result = postData.data;
-            console.log(result);
-
-            if (result.status === 202) {
-                setMessage("successfully created");
-
-            }
-            else {
-                setMessage("there is an error occurred");
-
-            }
-
+            disPatch(register(inputValues))
+            setInputValues({})
         }
         catch (error) {
-            return console.log(error.message);
-
-
+            return console.log(error);
 
         }
 
@@ -86,6 +79,12 @@ export default function Signup() {
             errors.motive = "motive is required";
 
         }
+        if (!values.country) {
+            errors.country = "country is required";
+        }
+        if (!values.userType) {
+            errors.userType = "userType is required"
+        }
         return errors;
 
     }
@@ -93,6 +92,11 @@ export default function Signup() {
         setShowPassword(!showPassword);
 
     }
+    // if (status === 201) {
+    //     alert("agent saved successfully");
+
+    // }
+
 
 
     return (
@@ -101,8 +105,15 @@ export default function Signup() {
             <Navbar></Navbar>
 
             <form className="col-md-6" id={Styles.form} onSubmit={submitHandler}>
-                <h2 className='text-warning text-center text-decoration-underline'>New to Us? Sign up</h2>
 
+                <h2 className='text-warning text-center text-decoration-underline'>New to Us? Sign up</h2>
+                {(status === 201) &&
+                    <p className='text-success'>Agent Saved successfully</p>
+
+                }
+                {(status === 402) &&
+                    <p className='text-danger'>Sign up failed</p>
+                }
                 {/* form fields */}
 
                 {/* email  */}
@@ -117,6 +128,7 @@ export default function Signup() {
                     <p className='text-danger'>{errors.name}</p>
                 </div>
                 <div className="mb-3">
+                    <p className='text-success'>password must contain one uppercase letter and special character</p>
                     <input type={showPassword ? "text" : "password"} value={inputValues.password} placeholder='enter your password' name="password" onChange={onChangeHandler} className="form-control" autoComplete='on' id="exampleInputPassword1"></input>
                     <p className='text-danger'>{errors.password}</p>
                 </div>
@@ -124,6 +136,7 @@ export default function Signup() {
                     <input type={showPassword ? "text" : "password"} placeholder='confirm password' name="confirmPassword" className="form-control"
                         value={inputValues.confirmPassword} onChange={onChangeHandler}
                         autoComplete='on' id="exampleInputPassword2"></input>
+
                     <p style={{ cursor: 'pointer', width: "150px" }} className="my-2 bg-success text-light" onClick={revealPassword}>
                         {showPassword ? "Hide password" : "show password"}</p>
                     <p className='text-danger'>{errors.confirmPassword}</p>
@@ -132,6 +145,10 @@ export default function Signup() {
                 <div className="mb-3">
                     <input type="text" placeholder='area' name="area" value={inputValues.area} onChange={onChangeHandler} className="form-control" id="area"></input>
                     <p className='text-danger'>{errors.area}</p>
+                </div>
+                <div className="mb-3">
+                    <input type="text" placeholder='country' name="country" value={inputValues.country} onChange={onChangeHandler} className="form-control" id="country"></input>
+                    <p className='text-danger'>{errors.country}</p>
                 </div>
                 <div className="mb-3">
                     <input type="text" placeholder='division' name="division" value={inputValues.division} onChange={onChangeHandler} className="form-control" id="division"></input>
@@ -146,7 +163,15 @@ export default function Signup() {
                     <p className='text-danger'>{errors.motive}</p>
                 </div>
 
+                <select className='form-select' name="userType" onChange={onChangeHandler} id="">
+                    <option value="">Select a userType</option>
+                    <option value="municipali">municipali</option>
+                    <option value="researchOr">researchOr</option>
+                    <option value="admin">admin</option>
+                    <option value="meteorolog">meteorolog</option>
 
+                </select>
+                <p className='text-danger'>{errors.role}</p>
 
                 <button type="submit" className="btn btn-primary">Sign up</button>
                 <p className='mt-3 text-danger'>{message && message}</p>
